@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"mime"
 	"net/http"
 	"os"
 
@@ -10,6 +11,10 @@ import (
 )
 
 func main() {
+	err := mime.AddExtensionType(".apk", "application/vnd.android.package-archive")
+	if err != nil {
+		log.Fatal(err)
+	}
 	path := flag.String("p", "", "path to web application root directory")
 	addr := flag.String("a", "0.0.0.0:80", "address to listen on")
 
